@@ -1,0 +1,50 @@
+
+CREATE DATABASE biblio;
+
+USE biblio;
+
+CREATE TABLE etudiant (
+codeEtudiant INT PRIMARY KEY, 
+nom varchar(255), 
+prenom varchar(255), 
+adresse varchar(255), 
+classe varchar(255));
+
+CREATE TABLE livre (
+codeLivre INT PRIMARY KEY, 
+titre varchar(255), 
+auteur varchar(255), 
+dateEdition DATE);
+
+CREATE TABLE users (
+id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+username varchar(100) NOT NULL,
+email varchar(100) NOT NULL,
+password varchar(100) NOT NULL
+);
+
+CREATE TABLE emprunter (
+codeEmprunt INT PRIMARY KEY, 
+codeEtudiant INT, 
+codeLivre INT, 
+dateEmprunt DATE,
+FOREIGN KEY(codeEtudiant) REFERENCES etudiant(codeEtudiant),
+FOREIGN KEY(codeLivre) REFERENCES livre(codeLivre));
+
+INSERT INTO etudiant VALUES
+('1', 'El Aatmani', 'Yassine', 'Marrakech', 'DEV101'),
+('2', 'Aamri', 'Abderrahman', 'Marrakech', 'DEV101');
+
+INSERT INTO livre VALUES
+('1', 'La Boîte à merveilles', 'Ahmed Sefrioui', '1954-01-01'),
+('2', 'Antigone', 'Jean Anouilh', '1944-02-04');
+
+INSERT INTO emprunter VALUES
+('1', '1', '1', '2022-05-11'),
+('2', '1', '2', '2022-05-12'),
+('3', '2', '1', '2022-05-10'),
+('4', '2', '2', '2022-05-13');
+
+INSERT INTO users VALUES
+('1', 'root', 'root@gmail.com', '123'),
+('2', 'user', 'user@gmail.com', '123');
